@@ -10,7 +10,6 @@ const cors=require('cors');
 app.use(express.json());
 app.use(cors({
     origin:"*"
-
 }));
 
 //Database connection with mongoDB(since i hv @ in pw....so replace @ with %40 )
