@@ -1,7 +1,7 @@
 import React from "react";
 import './CSS/LoginSignup.css'
 import { useState } from "react";
-let apiurl= 'http://localhost:4000';
+let apiurl= 'https://voguevista-backend.onrender.com';
 
 function LoginSignup() {
 
