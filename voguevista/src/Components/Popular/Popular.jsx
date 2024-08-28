@@ -9,7 +9,7 @@ const Popular = () => {
   const [popularinwomen,setPopular_in_women]=useState([]);
 
   useEffect(()=>{
-    fetch('http://localhost:4000/popularinwomen')
+    fetch('https://voguevista-backend.onrender.com/newcollections/popularinwomen')
     .then((response)=>response.json())
     .then((data)=>setPopular_in_women(data));
 },[])
