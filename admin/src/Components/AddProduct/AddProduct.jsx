@@ -71,7 +71,7 @@ const AddProduct = () => {
     if(product.category==="kid")
       product.image=product_3
     }
-      await fetch('http://localhost:4000/addproduct',{
+      await fetch('https://voguevista-backend.onrender.com/addproduct',{
         method:'POST',
         headers:{
           Accept:'application/json',
