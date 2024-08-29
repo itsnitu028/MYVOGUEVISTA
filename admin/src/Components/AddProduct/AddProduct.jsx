@@ -65,11 +65,11 @@ const AddProduct = () => {
     }
     if(product.image===undefined){
       if(product.category==="women")
-      product.image=product_1
+      product.image="https://4.imimg.com/data4/VO/CO/MY-2941697/women-tunic-500x500.jpg"
     if(product.category==="men")
-      product.image=product_2
+      product.image="https://5.imimg.com/data5/ANDROID/Default/2023/6/316991831/JI/KL/FJ/113040589/product-jpeg-500x500.jpg"
     if(product.category==="kid")
-      product.image=product_3
+      product.image="https://assets.myntassets.com/dpr_1.5,q_60,w_400,c_limit,fl_progressive/assets/images/22499638/2023/3/24/e52ed259-d175-4949-8730-5d1db4ec29191679653590227SmartRAHOBoysBlackMustardT-shirtwithTrousers1.jpg"
     }
       await fetch('https://voguevista-backend.onrender.com/addproduct',{
         method:'POST',
