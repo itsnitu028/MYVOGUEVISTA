@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import './AddProduct.css'
 import upload_area from '../../assets/upload_area.svg'
+import product_1 from '../../assets/product_1.png'
+import product_2 from '../../assets/product_14.png'
+import product_3 from '../../assets/product_30.png'
 
 const AddProduct = () => {
 
@@ -31,22 +34,44 @@ const AddProduct = () => {
 
     let formData=new FormData();
     formData.append('product',image);
-
-    await fetch('https://voguevista-backend.onrender.com/upload',{
-      method:'POST',
-      headers:{
-        Accept:'application/json'
-      },
-      body:formData
+    formData.append('upload_preset','myCloud');
+    formData.append('cloud_name','drzhmwnss');
+    try{
+    const res = await fetch('https://api.cloudinary.com/v1_1/drzhmwnss/image/upload',{
+      method : "POST",
+      body : formData
     })
-    .then((resp)=>resp.json())
-    .then((data)=>{responseData=data})
 
-    if(responseData.success){
-      product.image=responseData.image_url;
+    const cloudData = await res.json();
+    product.image=cloudData.url;
+    console.log(cloudData.url);
+
+    // await fetch('http://localhost:4000/upload',{
+    //   method:'POST',
+    //   headers:{
+    //     Accept:'application/json'
+    //   },
+    //   body:formData
+    // })
+    // .then((resp)=>resp.json())
+    // .then((data)=>{responseData=data})
+
+    // if(responseData.success){
+      // product.image=responseData.image_url;
       console.log(product);
-  
-      await fetch('https://voguevista-backend.onrender.com/addproduct',{
+    }
+    catch(error){
+
+    }
+    if(product.image===undefined){
+      if(product.category==="women")
+      product.image=product_1
+    if(product.category==="men")
+      product.image=product_2
+    if(product.category==="kid")
+      product.image=product_3
+    }
+      await fetch('http://localhost:4000/addproduct',{
         method:'POST',
         headers:{
           Accept:'application/json',
@@ -61,8 +86,6 @@ const AddProduct = () => {
       })
  
     }
-  }
-
   return (
     <div className='add-product'>
         <div className='addproduct-itemfield'>
