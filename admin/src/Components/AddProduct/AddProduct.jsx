@@ -1,9 +1,6 @@
 import React, { useState } from 'react'
 import './AddProduct.css'
 import upload_area from '../../assets/upload_area.svg'
-import product_1 from '../../assets/product_1.png'
-import product_2 from '../../assets/product_14.png'
-import product_3 from '../../assets/product_30.png'
 
 const AddProduct = () => {
 
@@ -33,16 +30,17 @@ const AddProduct = () => {
     let product=productDetails;
 
     let formData=new FormData();
-    formData.append('product',image);
-    formData.append('upload_preset','myCloud');
-    formData.append('cloud_name','drzhmwnss');
+    formData.append("file",image);
+    formData.append("cloud_name","drzhmwnss");
+    formData.append("upload_preset","nituarora");
+    console.log(formData);
     try{
-    const res = await fetch('https://api.cloudinary.com/v1_1/drzhmwnss/image/upload',{
+    let res = await fetch('https://api.cloudinary.com/v1_1/drzhmwnss/image/upload',{
       method : "POST",
       body : formData
     })
 
-    const cloudData = await res.json();
+    let cloudData = await res.json();
     product.image=cloudData.url;
     console.log(cloudData.url);
 
@@ -61,17 +59,17 @@ const AddProduct = () => {
       console.log(product);
     }
     catch(error){
-
+        console.log(error);
     }
-    if(product.image===undefined){
-      if(product.category==="women")
-      product.image="https://4.imimg.com/data4/VO/CO/MY-2941697/women-tunic-500x500.jpg"
-    if(product.category==="men")
-      product.image="https://5.imimg.com/data5/ANDROID/Default/2023/6/316991831/JI/KL/FJ/113040589/product-jpeg-500x500.jpg"
-    if(product.category==="kid")
-      product.image="https://assets.myntassets.com/dpr_1.5,q_60,w_400,c_limit,fl_progressive/assets/images/22499638/2023/3/24/e52ed259-d175-4949-8730-5d1db4ec29191679653590227SmartRAHOBoysBlackMustardT-shirtwithTrousers1.jpg"
-    }
-      await fetch('https://voguevista-backend.onrender.com/addproduct',{
+    // if(product.image===undefined){
+    //   if(product.category==="women")
+    //   product.image=product_1
+    // if(product.category==="men")
+    //   product.image=product_2
+    // if(product.category==="kid")
+    //   product.image=product_3
+    // }
+      await fetch('http://localhost:4000/addproduct',{
         method:'POST',
         headers:{
           Accept:'application/json',
@@ -86,6 +84,7 @@ const AddProduct = () => {
       })
  
     }
+  
   return (
     <div className='add-product'>
         <div className='addproduct-itemfield'>
